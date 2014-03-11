@@ -152,11 +152,11 @@ background: none;
 }
 
 slides > slide:not(.nobackground):before {
-content: "@sw12";
+content: "@cwilso";
 }
 
 slides > slide:not(.nobackground):after {
-content: "simpl.info/media";
+content: "Media Platform";
 }
 
 
