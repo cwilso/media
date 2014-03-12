@@ -18,12 +18,13 @@
 
 <slides class="layout-widescreen">
 
+<!--
 <slide class="logoslide nobackground">
   <article class="flexbox vcenter">
     <div style='margin: 0 0 2em 0'><img src="images/google_developers_logo.png" alt="Google developers logo"></div>
-<!--     <div>Move forward and back with the arrow keys</div>
- -->  </article>
+  </article>
 </slide>
+-->
 
 <slide class="title-slide segue nobackground">
   <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
@@ -40,19 +41,15 @@
 </slide>
 
 
-<!--
-
 <slide class="nobackground">
     <article class="fill flexbox vcenter">
-      <div class='big'><a href="http://simpl.info/media" title="These slides online">simpl.info/media</a></div>
+      <div class='big'><a href="http://goo.gl/lzhB1Y" title="These slides online">http://goo.gl/lzhB1Y</a></div>
     </article>
     <aside class="note">
-      <p>Anyway, this deck is live on the web, so you can follow along or refer to it later.</p>
+      <p>Incidentally, this deck is live on the web, so you can follow along or refer to it later.</p>
       <p>There are lots of links in the slides - I hope these are useful, online if not on screen.</p>
     </aside>
 </slide>
-
--->
 
 
 <slide class="nobackground">
@@ -76,12 +73,12 @@
 
 
 <slide class="nobackground">
-    <article class="fill flexbox vcenter">
+    <article class="fill flexbox vcenter main">
       <p>53% of adults media multi-task while watching TV</p>
     </article>
     <footer class="source">Source: <a href="http://media.ofcom.org.uk/2013/08/01/the-reinvention-of-the-1950s-living-room-2/" title="OFCOM report on TV viewing habits in the UK">The reinvention of the 1950s living room, OFCOM August 2013</a></footer>
     <aside class="note">
-      <p>A study from last year in the UK showed that more that half of UK adults would multi-task with other media - like checking email or looking up information on shows.  I know that my wife - not quite a technophobe, but certainly not an early adopter - is constantly using her smartphone while we're watching TV.  Or maybe she just needs to stop letting me pick the programs.</p>
+      <p>In addition, the second-screen phenomenon is quite strong.  A study from last year in the UK showed that more that half of UK adults would multi-task with other media - like checking email or looking up information on shows.</p>
     </aside>
 </slide>
 
@@ -97,8 +94,8 @@
 
 
 <slide class="nobackground">
-  <article  class="fill flexbox vcenter">
-    <p>Video will be 80 to 90 percent of global consumer traffic by 2017.</p>
+  <article  class="fill flexbox vcenter main">
+    <p>Video will be 80-90% of net traffic by 2017.</p>
   </article>
   <footer class="source">Source: <a href="http://goo.gl/RfB73h" title="Cisco networking forecast">Cisco Visual Networking Index: Forecast and Methodology, 2012–2017</a></footer>
   <aside class="note">
@@ -162,7 +159,7 @@
 
 <slide>
   <hgroup>
-    <h2>VP8 and VP9</h2>
+    <h2>VP8 and VP9: Open codecs for the web</h2>
   </hgroup>
   <article>
   <ul>
@@ -172,10 +169,7 @@
   </ul>
   </article>
   <aside class="note">
-    <p>We test against x264, which is commonly regarded as the very best H.264 encoder</p>
-    <p>We test against High Profile, using the very best settings.</p>
-    <p>The conventional wisdom on HEVC is that it uses 50% of the bits of H.264. Our VP9 demo shows that we're using  better than 50% fewer bits than H.264 as well.</p>
-    <p>The data is obtained using the ffmpeg analysis tool</p>
+    <p>Our VP9 demo shows that we're using  better than 50% fewer bits than H.264 as well.</p>
     <p>Expect first chips supporting VP9 decode probably second half of 2014.</p>
   </aside>
 </slide>
@@ -183,7 +177,7 @@
 
 <slide class="nobackground">
   <article class="fill flexbox vcenter">
-    <pre class="biggish prettyprint" style="background: none;">
+    <pre class="quiteBig prettyprint" style="background: none;">
 &lt;video&gt;
   &lt;source src="chrome.webm" /&gt;
   &lt;source src="chrome.mp4" /&gt;
@@ -191,58 +185,57 @@
     </pre>
   </article>
   <aside class="note">
-    <p>Using the source element enables the browser to automatically select the video src with no hackery.</p>
-    <p>...and just two formats cover all the browsers that support the video element.</p>
-    <p>There used to be a bug on iOS where you had to include the .mp4 source first - don't need to worry about that now.</p>
+    <p>Now, not everyone supports WebM and VP8 - notably, Safari and IE do not - but using the source element enables the browser to automatically select the video src, and just two formats cover all the browsers - so this is still pretty straightforward.</p>
   </aside>
 </slide>
 
 <slide class="nobackground">
   <article class="fill flexbox vcenter">
-    <pre class="biggish prettyprint" style="background: none; line-height: 2em;">
+    <pre class="quiteBig prettyprint" style="background: none;">
 &lt;video&gt;
-  &lt;source src="chrome.webm" <b>type="video/webm"</b> /&gt;
-  &lt;source src="chrome.mp4" <b>type="video/mp4"</b> /&gt;
+  &lt;source src="chrome.webm" 
+      <b>type="video/webm"</b> /&gt;
+  &lt;source src="chrome.mp4" 
+      <b>type="video/mp4"</b> /&gt;
 &lt;/video&gt;
     </pre>
   </article>
   <aside class="note">
-  <p>The type attribute is optional</p>
-  <p>But... it gives us better performance because if the browser can't play the type, it won't download any of the file to check.</p>
-  <p>You can add specific codecs if you want.</p>
+  <p>You might want to add the optional type attribute, since that way your app won't need to serially download the beginning of each file until it finds one it can play.</p>
 </p></aside>
 </slide>
 
 
 <slide class="nobackground">
   <article class="fill flexbox vcenter">
-    <pre class="biggish prettyprint" style="background: none; line-height: 2em;">
+    <pre class="quiteBig prettyprint" style="background: none;">
 &lt;video <b>poster="images/poster.jpg</b>"&gt;
-  &lt;source src="chrome.webm" type="video/webm" /&gt;
-  &lt;source src="chrome.mp4" type="video/mp4" /&gt;
+  &lt;source src="chrome.webm" 
+      type="video/webm" /&gt;
+  &lt;source src="chrome.mp4" 
+      type="video/mp4" /&gt;
 &lt;/video&gt;
     </pre>
   </article>
-  <aside class="note"><p>Don't forget the poster attribute which, again, is widely supported. A poster image means another download, but can be good for mobile, to show some content better than a blank screen or random thumbnail.</p></aside>
+  <aside class="note"><p>And finally, particularly on mobile, it's useful to add a poster image - a placeholder picture.  This means another download, but on mobile particularly it gives a better experience...</p></aside>
 </slide>
 
 <slide class="nobackground">
   <article >
-    <pre class="biggish prettyprint" style="background: none; line-height: 2em;">
+    <pre class="quiteBig prettyprint" style="background: none;">
 &lt;video poster="images/poster.jpg"
   <b>autoplay preload="metadata"</b>&gt;
-  &lt;source src="chrome.webm" type="video/webm" /&gt;
-  &lt;source src="chrome.mp4" type="video/mp4" /&gt;
-  &lt;p&gt;Video element not supported.&lt;/p&gt;
+  &lt;source src="chrome.webm" 
+      type="video/webm" /&gt;
+  &lt;source src="chrome.mp4" 
+      type="video/mp4" /&gt;
 &lt;/video&gt;
     </pre>
     <div><a href="http://stevesouders.com/tests/mediaevents.php" title="Steve Souders article about video preload buffer length">Steve Souders' preload test</a></div>
   </article>
   <aside class="note">
-    <p>OK - here's the full Monty!</p>
-    <p>Let's highlight two things that DON'T work on mobile...</p>
-<p>Firstly autoplay - you can't script playback control on mobile either.</p>
-<p>Secondly, no preload – which on desktop can be used to buffer video. (Check out Steve Souders' preload data page).</p>
+    <p>Because there are two video features that DON'T work on mobile... I don't know of any mobile browser that supports autoplay, or scripting playback control prior to the user interacting with the page.</p>
+<p>And preload also doesn't work – on desktop this can be used to buffer video, but mobile browsers typically reserve downloading until the user initiates playback.</p>
   </aside>
 </slide>
 
@@ -252,7 +245,7 @@
     <h2 style="width: 780px">Advanced video features</h2>
   </hgroup>
   <aside class="note">
-    <p>Video isn't just a black-box embedded object anymore.  Just to show how far we've come with video on the web, let's talk about some of the ways video is opened up as a programmable tool.</p>
+    <p>But aside from these basics, video isn't just a black-box embedded object anymore.  Just to show how far we've come with video on the web, let's talk about some of the ways video is opened up as a programmable tool.</p>
   </aside>
 </slide>
 
@@ -271,7 +264,7 @@
 
 <slide>
   <article class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">Captions and subtitles</div>
+    <div class="demoLabel">Captions and subtitles</div>
     <p class="quiteBig" style="margin: 0 0 1em 0"><a href="http://simpl.info/track" title="Track element video demo">simpl.info/track</a></p>
     <p class="quiteBig"><a href="http://simpl.info/track/audio" title="Track element audio demo">simpl.info/track/audio</a></p>
   </article>
@@ -308,8 +301,7 @@
   <pre class="prettyprint" style="background: none; font-size: 150%; margin-top: 1.5em;" >&lt;video src='chrome.webm<b>#t=5,10</b>' /&gt;</pre>
   </article>
   <aside class="note">
-    <p>On the same timing front, we can use Media Fragments to specify what range of the video we want to play.  This gives us a way to refer to only part of a video - which is nice, because you only need to download the part of the video you want to watch. That can save a lot of bandwidth and make your app feel more responsive.  </p>
-    <p>This enables you to deliver multiple views on the same video - chapters, or even video sprites, so to speak - without having to encode and serve multiple files.</p>
+    <p>On the same timing front, we can use Media Fragments to specify what range of the video we want to play.  This gives us a way to refer to only part of a video - which is nice, because you only need to download the part of the video you want to watch.  This enables you to deliver multiple views on the same video - chapters, or even video sprites, so to speak - without having to encode and serve multiple files.</p>
     <p>Again, this is really well supported on mobile and desktop -- though sadly not on iOS, last time I looked,  and you need to make sure Range Requests are supported by your server.</p>
   </aside>
 </slide>
@@ -318,7 +310,7 @@
 
 <slide>
   <article class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">Deep linking, deep search</div>
+    <div class="demoLabel">Deep linking, deep search</div>
     <p class="big"><a href="http://simpl.info/search" title="Chrome video search">simpl.info/search</a></p>
   </article>
   <aside class="note">
@@ -340,7 +332,7 @@
 
 <slide>
   <article class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">Synchronised metadata</div>
+    <div class="demoLabel">Synchronised metadata</div>
     <p class="big"><a href="http://simpl.info/track/map" title="Synchronised video, Google Map and Street View">simpl.info/map</a></p>
   </article>
   <aside class="note">
@@ -353,7 +345,8 @@
 
 <slide>
   <article class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">Media Source Extensions - generating streams from JavaScript</div>
+    <div class="demoLabel">Media Source Extensions</div>
+    <div class="small">(generating streams from JavaScript)</div>
     <p class="big"><a href="http://simpl.info/mse" title="Media Source Extensions demo">simpl.info/mse</a></p>
     <!-- <p><a href="w3.org/TR/media-source" title="MSE spec">Spec</a></p> -->
 <!--     <p><a href="updates.html5rocks.com/2011/11/Stream-video-using-the-MediaSource-API" title="Short MSE article on HTML5 Rocks">HTML5 Rocks Update</a></p>
@@ -366,7 +359,7 @@
 
 <slide class="nobackground">
   <article  class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">Adaptive Streaming</div>
+    <div class="demoLabel">Adaptive Streaming</div>
     <div class="big" style="margin: 0 0 1em 0;"><a href="http://dash-mse-test.appspot.com/dash-player.html?url=http://yt-dash-mse-test.commondatastorage.googleapis.com/media/car-20120827-manifest.mpd" title="Sample DASH Player">DASH</a></div>
     <div><a href="http://www.bbc.co.uk/rd/blog/2013/09/mpeg-dash-test-streams" title="DASH at the BBC">What is DASH?</a></div>
   </article>
@@ -377,7 +370,7 @@
 
 <slide>
   <article  class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">EME: Encrypted Media Extensions</div>
+    <div class="demoLabel">EME: Encrypted Media Extensions</div>
     <ul>
       <li><a href="http://www.w3.org/TR/encrypted-media/" title="Encrypted Media Extensions W3C Working Draft">Spec</a></li>
       <li><a href="http://dash-mse-test.appspot.com" title="">YouTube demo</a></li>
@@ -386,43 +379,10 @@
     </ul>
   </article>
   <aside class="note">
-    <p>And finally in video features, I want to briefly mention EME - encrypted media extensions.  EME is a JavaScript API extending the HTMLMediaElement APIs, that enables web applications to interact with DRM systems, in order to negotiate playback of encrypted media.</p>
-    <p>EME can either use simple ClearKey encryption or an add-on DRM module, such as WideVine.</p>
-    <p>Browsers that support EME can detect that a video is encrypted when playback begins, then interact with Content Decryption Modules, CDMs, to obtain a key and play back decrypted content.  In short, the goal here is to enable an acceptable platform for high-value content - like high-definition current movies or TV shows, where the contracts require such protections.</p>
+    <p>And finally in video features, I want to briefly mention EME - encrypted media extensions.  EME is a JavaScript API extending the HTMLMediaElement APIs, that enables web applications to interact with DRM systems, in order to negotiate playback of encrypted media, either using simple ClearKey encryption or an add-on DRM module, such as WideVine.</p>
+    <p>Browsers that support EME can detect that a video is encrypted and use a Content Decryption Module to obtain a key and play back the decrypted content.  The goal here is to enable an acceptable platform for high-value content - like high-definition current movies or TV shows, where the contracts require such protections.</p>
   </aside>
 </slide>
-
-<!--
-<slide class="nobackground">
-  <article class="fill flexbox vcenter">
-    <div style="margin: 0 0 2em 0; font-weight: bold">EME ClearKey demo</div>
-    <div class="big"><a href="http://www.simpl.info/eme/clearkey/src" title="ClearKey EME example">simpl.info/clearkey</a></div>
-  </article>
-  <aside class="note">
-  </aside>
-</slide>
--->
-
-<!--
-
-<slide class="nobackground">
-  <hgroup>
-    <h2>Fallbacks</h2>
-  </hgroup>
-  <article>
-    <ul>
-      <li>HTML only: <a href="http://camendesign.co.uk/code/video_for_everybody" title="Video for Everybody video fallback using HTML only">Video for Everybody</a></li>
-      <li>JavaScript player comparison: <a href="http://html5video.org/wiki/HTML5_Video_Player_Comparison" title="HTML5 video player comparison">html5video.org</a>, <a href="http://praegnanz.de/html5video/" title="Video player comparison table">praegnenz.de</a></li>
-      <li><a href="http://simpl.info/canplaytype" title="canPlayType() demo"><code>canPlayType()</code></a></li>
-    </ul>
-  </article>
-  <aside class="note">
-    <p>What about the real world?</p>
-    <p>There are lots of JavaScript libraries to provide fallbacks for the 15% of browsers that don't support the video and audio elements.</p>
-    <p>canPlayType() works on Android and iOS</p>
-  </aside>
-</slide>
--->
 
 
 
@@ -470,41 +430,9 @@ function errorCallback(error) {
   </article>
   <aside class="note">
     <p>You can then do different things with that video stream - most simply, you can assign it to a video SRC attribute, and display it live!</p>
-p>
   </aside>
 </slide>
 
-<!-- <slide>
-  <hgroup>
-    <h2>gUM permissions</h2>
-  </hgroup>
-  <article>
-    <ul>
-      <li>HTTPS only prompts once!</li>
-      <li>Chrome apps: <code>audioCapture</code> and <code>videoCapture</code> permissions</li>
-      <li>UI settings can be changed afterwards.</li>
-      <li>Chrome flag: <code>--use-fake-ui-for-media-stream</code><br />
-      &mdash; try <a href="http://mathiasbynens.be/notes/shell-script-mac-apps" title="Thomas Aylott's appify script">appify</a> for running Chrome with weird flags on Mac</li>
-    </ul>
-  </article>
-  <aside class="note">
-   <p>If you run with HTTPS, or from an app, permission will only be asked for once.</p>
-    <p>Likewise with Chrome apps that ask for "audioCapture" and"videoCapture" permissions. Permission is only requested on installation. gUM isn't available for Chrome extensions at this point, though I believe some have been whitelisted.</p>
-    <p>To change cameras/settings in Chrome click to the right of the URL bar</p>
-  </aside>
-</slide>
-
-<slide class="nobackground">
-    <article class="fill flexbox vcenter">
-      <div class='big'><img src="images/file.png" alt="Don't use file:// URLs" style='max-width: 100%' /></div>
-    </article>
-    <aside class="note">
-      <p>A word of warning: you must run getUserMedia() from a server.</p>
-      <p>Otherwise you'll get a rather baffling PERMISSION_DENIED error.</p>
-      <p>There are efforts underway to provide better error messages.</p>
-      <p>file:// URLs are prohibited for lots of Chrome APIs to avoid security problems</p>
-    </aside>
-</slide> -->
 
 <slide>
   <article class="fill flexbox vcenter">
@@ -604,8 +532,7 @@ navigator.getUserMedia(constraints, gotStream);
     <h2 style="width: 780px">WebRTC</h2>
   </hgroup>
   <aside class="note">
-    <p>So - we have the ability to do great things with audio and video on the client - but we need to communicate these streams with others.  For this we have WebRTC, and this is one the most ambitious and maybe disruptive web projects in many years.</p>
-    <p>WebRTC is a response to the demand for realtime communication features in the open web - without plugins or proprietary codecs, free for users and developers to use.</p>
+    <p>So - we have the ability to do great things with audio and video on the client - but we need to communicate these streams with others.  For this we have WebRTC, and this is one of the most ambitious and maybe disruptive web features in recent years. WebRTC provides realtime communication features in the open web platforms - no plugins or proprietary codecs, free for users and developers to use.</p>
     <p>If you're interested in WebRTC, I hope you caught Lisa Larson-Kelley's talk yesterday at 11; if not, I'll cover some high points.</p>
   </aside>
 </slide>
@@ -932,6 +859,8 @@ send(myData);
     </ul>
   </article>
   <aside class="note">
+  <p>Web Audio has a ton of built in capabilities and effects, and you don't need to be a digital signal processing expert to use it.  I'm certainly not.  I've given lots of web audio talks before, so I'm not going to go into too much depth here...</p>
+    <p>Brian Rinaldi has a talk on 8-bit game audio using Web Audio in Salon 14 at noon - right after this talk - so let's all head over there to heckle him.</p>
   </aside>
 </slide>
 
@@ -945,12 +874,11 @@ send(myData);
       <li>Safari 6.0+ and iOS6+</li>
       <li>Firefox 25 desktop and Android</li>
       <li>Mic to speaker latency as low as 5ms</li>
-      <li>Input to WebRTC in Chrome</li>
-      <li>Output in the works</li>
     </ul>
     <div>More information? <a href="http://www.youtube.com/watch?v=wZrNI-86zYI" title="Chris Wilson Web Audio presentation">Web Audio talk</a> <a href="http://webaudiodemos.appspot.com/">demos</a></div>
   </article>
   <aside class="note">
+  <p>I did want to update that not only is Web Audio on Chrome and Safari, on desktop, iOS and Android, but also on Firefox on desktop and Android. On Chrome on OSX, we can get mic-to-speaker latency in the 5ms range, too, which is amazing.
   </aside>
 </slide>
 
@@ -976,7 +904,7 @@ navigator.getUserMedia( <b>{audio:true}</b>, gotStream);
 
   </article>
   <aside class="note">
-  <p>RTCPeerConnection will also accept Web Audio output.</p>
+  <p>Speaking of microphones, we can get audio streams from getUserMedia into the system.  I've used this in a number of demos before...</p>
   </aside>
 </slide>
 
@@ -985,7 +913,7 @@ navigator.getUserMedia( <b>{audio:true}</b>, gotStream);
     <div style="margin: 0 0 1em 0; font-weight: bold">gUM + Web Audio + WebGL</div>
     <div><a href="http://www.webaudiodemos.appspot.com/Vocoder/index.html" title="Vocoder">webaudiodemos.appspot.com/Vocoder/</a></div>
   </article>
-  <aside class="note">
+  <aside class="note">... and ...  try this one at home.
   </aside>
 </slide>
 
@@ -1010,9 +938,7 @@ function gotAudio(stream) {
   <p style="margin: 2em 0 0 0"><a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/webrtc-integration.html" title="W3C examples adapted from the MediaStream Processing API proposal">More Media Stream integration examples</a></p>
   </article>
   <aside class="note">
-    <p>Already in experimental builds and working well.</p>
-    <p>This is very powerful: effects into and out of RTCPeerConnection.</p>
-    <p>'Join the boxes' architecture.</p>
+    <p>We can also integrate this with WebRTC - and apply effects like the vocoder on audio that's fed into an RTCPeerConnection.</p>
   </aside>
 </slide>
 
@@ -1029,6 +955,7 @@ function gotAudio(stream) {
   </ul>
   </article>
   <aside class="note">
+  <p>I also want to mention another nascent standard - the Web MIDI API.  
   </aside>
 </slide>
 
@@ -1038,6 +965,8 @@ function gotAudio(stream) {
     <div class="biggish" style="margin: 0 0 1em 0;"><a href="http://webaudiodemos.appspot.com/MIDIDrums/index.html" title="MIDI drum machine demo">MIDI drums</a></div>
     <div class="biggish" style="margin: 0 0 1em 0;"><a href="http://webaudiodemos.appspot.com/midi-synth/index.html" title="MIDI synth">MIDI synth</a></div>
     <div class="biggish" style="margin: 0 0 2em 0;"><a href="http://gridflux.googlecode.com/git/index.html" title="Gidflux synth">GRIDFLUX</a></div>
+    <div class="biggish" style="margin: 0 0 2em 0;"><a href="http://yamaha-webmusic.github.io/" title="Yamaha github">Yamaha NSX-1</a></div>
+
     <div style="margin: 0 0 1.5em 0;"><a href="http://flippinawesome.org/2013/10/28/audio-synthesis-in-javascript/" title="Gidflux synth">Audio synthesis in JavaScript</a></div>
   </article>
   <aside class="note">
@@ -1087,9 +1016,11 @@ function gotAudio(stream) {
 <slide class="thank-you-slide segue nobackground">
   <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
   <article class="flexbox vleft auto-fadein">
-    <h2>&lt;Thank You!&gt;</h2>
-      <p style="font-size:1.2em"><a href="http://simpl.info/media" style="color:inherit" title="These slides online">simpl.info/media</a></p>
+    <h2>&lt;/talk&gt;</h2>
+    <h3>Thank You!</h3>
+      <p style="font-size:1.2em; margin-bottom: 2em">Slides: &nbsp;<a href="goo.gl/lzhB1Y" style="color:inherit" title="These slides online">goo.gl/lzhB1Y</a></p>
   </article>
+
   <p class="auto-fadein" data-config-contact>
     <!-- populated from slide_config.json -->
   </p>
@@ -1098,26 +1029,10 @@ function gotAudio(stream) {
     </aside>
 </slide>
 
-<slide class="logoslide dark nobackground">
-  <article class="flexbox vcenter">
-    <span><img src="images/google_developers_logo_white.png"></span>
-  </article>
-</slide>
 
 <slide class="backdrop"></slide>
 
 </slides>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44413410-1', 'simpl.info/media');
-  ga('send', 'pageview');
-
-</script>
 
 <!--[if IE]>
   <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>

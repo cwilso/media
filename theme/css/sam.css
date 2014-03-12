@@ -20,6 +20,7 @@ font-size: 8em;
 line-height: 1.2em;
 }
 
+article.fill.main { font-size: 150%; }
 body.with-notes aside.note {
 background: white;
 color: black;
@@ -49,6 +50,7 @@ margin: 1.5em 0 0 0;
 
 div.demoLabel {
 font-weight: bold;
+font-size: 2em;
 margin: 0 0 2em 0;
 }
 
@@ -156,7 +158,7 @@ content: "@cwilso";
 }
 
 slides > slide:not(.nobackground):after {
-content: "Media Platform";
+content: "goo.gl/lzhB1Y";
 }
 
 
